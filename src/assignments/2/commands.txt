@@ -1,0 +1,5 @@
+sudo docker build --tag tema_2 .
+
+sudo docker network create mihai
+sudo docker run -d --name andreea --network mihai -p 8080:8080 tema_2
+sudo docker run -it --name andrei --network mihai curlimages/curl -L -v http://andreea:8080
