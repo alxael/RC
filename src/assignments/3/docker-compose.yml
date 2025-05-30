@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  server:
+    image: python_scapy
+    container_name: server
+    command: tail -f /dev/null
+    ports:
+      - "9999:9999/udp"
+    networks:
+      - appnet
+    volumes:
+      - ./app:/app
+
+  client:
+    image: python_scapy
+    container_name: client
+    command: tail -f /dev/null
+    networks:
+      - appnet
+    volumes:
+      - ./app:/app
+    depends_on:
+      - server
+
+networks:
+  appnet:
+    driver: bridge
